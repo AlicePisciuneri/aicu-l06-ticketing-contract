@@ -47,17 +47,22 @@ Classificare i dati prima di chiedere codice.
 
 Usa Mermaid solo per visualizzare la relazione minima. Non trasformarlo in schema DB definitivo.
 
+## Mermaid Leggero
+
+Usa Mermaid solo per visualizzare la relazione minima. Non trasformarlo in schema DB definitivo.
+
 ```mermaid
-erDiagram
-    GUEST_USER ||--o{ TICKET : submits
-    TICKET {
-        string id "generato"
-        string email "accettato"
-        string title "accettato"
-        string message "accettato"
-        string status "generato"
-        string createdAt "generato"
-    }
+[ UTENTE SUPPORTO ] 
+        │
+        │ (invia form)
+        ▼
+   [ TICKET ]
+        ├── id          (generato)
+        ├── email       (accettato)
+        ├── title       (accettato)
+        ├── message     (accettato)
+        ├── status      (generato)
+        └── createdAt   (generato)
 
 Campi mostrati nel diagramma:
 
