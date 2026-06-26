@@ -43,15 +43,12 @@ Classificare i dati prima di chiedere codice.
 | `owner` | respinto | L'assegnazione a un operatore o gestore avanzato è fuori scope. | non-goals L05 |
 | `createdAt` | generato | Timestamp della creazione del ticket registrato dal sistema. | decisione slice minimo |
 
-## Mermaid Leggero
-
-Usa Mermaid solo per visualizzare la relazione minima. Non trasformarlo in schema DB definitivo.
 
 ## Mermaid Leggero
 
-Usa Mermaid solo per visualizzare la relazione minima. Non trasformarlo in schema DB definitivo.
 
-```mermaid
+
+```text
 [ UTENTE SUPPORTO ] 
         │
         │ (invia form)
@@ -63,10 +60,9 @@ Usa Mermaid solo per visualizzare la relazione minima. Non trasformarlo in schem
         ├── message     (accettato)
         ├── status      (generato)
         └── createdAt   (generato)
+```
 
-Campi mostrati nel diagramma:
-
-Campi mostrati nel diagramma:
+## Campi mostrati nel diagramma:
 
 id - generato
 
@@ -79,6 +75,7 @@ message - accettato
 status - generato
 
 createdAt - generato
+
 
 ## Campi Scartati O Rimandati
 | Campo | Decisione | Motivo |
