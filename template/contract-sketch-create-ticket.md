@@ -46,10 +46,11 @@ Per questo slice, `create ticket` significa:
 
 ## Payload Valido
 
-```json
 {
+  "email": "utente@esempio.it",
+  "title": "Problema caricamento pagina",
+  "message": "Quando clicco sul bottone invia, la pagina diventa bianca e non succede nulla."
 }
-```
 
 Perche' e' valido:
 
@@ -58,9 +59,11 @@ Perche' e' valido:
 
 ## Risposta Attesa Di Successo
 
-```txt
-[status o risultato atteso]
-```
+{
+  "success": true,
+  "ticketId": "TCK-GENERATO-123",
+  "status": "Nuovo"
+}
 
 Campi attesi:
 
@@ -69,29 +72,35 @@ Campi attesi:
 
 ## Payload Invalido 1
 
-```json
 {
+  "email": "utente@esempio.it",
+  "title": "",
+  "message": "Non riesco a completare il pagamento."
 }
-```
 
 Motivo del rifiuto:
 
-```txt
-[perche' e' invalido]
-```
+La richiesta è invalida perché il campo obbligatorio 'title' è stato inviato come stringa vuota, violando il criterio di accettazione sulla presenza dei dati essenziali.
 
 Risposta attesa:
+{
+  "success": false,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "status": 400,
+    "message": "title is required and cannot be empty"
+  }
+}
 
-```txt
-[status o errore atteso]
-```
+400 Bad Request (VALIDATION_ERROR). Il sistema blocca l'operazione, non salva alcun ticket nel database e restituisce un messaggio d'errore esplicito: "title is required and cannot be empty".
 
 ## Payload Invalido 2
 
-```json
 {
+  "email": "utente_senza_chiocciola",
+  "title": "Problema di login",
+  "message": "La password inserita viene rifiutata dal sistema."
 }
-```
 
 Motivo del rifiuto:
 
@@ -101,9 +110,14 @@ Motivo del rifiuto:
 
 Risposta attesa:
 
-```txt
-[status o errore atteso]
-```
+{
+  "success": false,
+  "error": {
+    "code": "INVALID_EMAIL_FORMAT",
+    "status": 400,
+    "message": "The email address provided is invalid (missing '@')"
+  }
+}
 
 ## Error Model Minimo
 
